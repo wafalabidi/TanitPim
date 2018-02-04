@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import soft.dot.tn.tanit.Activities.FertilityActivity;
+import soft.dot.tn.tanit.Activities.PoidsActivity;
 import soft.dot.tn.tanit.Activities.SomeilActivity;
 import soft.dot.tn.tanit.R;
 
@@ -38,6 +39,8 @@ public class AnalyseFragment extends Fragment implements View.OnClickListener {
     CardView cvSomeil;
     @BindView(R.id.pregnancyTiming)
     LinearLayout pregnancyTiming;
+    @BindView(R.id.poids)
+    LinearLayout Llpoids;
 
     @Nullable
     @Override
@@ -52,7 +55,9 @@ public class AnalyseFragment extends Fragment implements View.OnClickListener {
         LlConnectBracelet.setOnClickListener(this);
         LlConnectBracelet.setOnClickListener(this);
         LlSomeil.setOnClickListener(this);
+        Llpoids.setOnClickListener(this);
         pregnancyTiming.setOnClickListener(this);
+
 
 
     }
@@ -72,7 +77,9 @@ public class AnalyseFragment extends Fragment implements View.OnClickListener {
             Intent intent = new Intent(getActivity(), FertilityActivity.class);
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
         }
-        else if (view.getId() == R.id.poid){
+        else if (view.getId() == R.id.poids){
+            Intent intent = new Intent(getActivity(), PoidsActivity.class);
+            startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
         }
 
     }

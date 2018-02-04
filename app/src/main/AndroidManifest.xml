@@ -26,6 +26,9 @@
         <activity android:name=".Activities.SomeilActivity"
             android:parentActivityName=".Activities.DashBoardActivity"
             />
+        <activity android:name=".Activities.PoidsActivity"
+            android:parentActivityName=".Activities.PoidsActivity">
+        </activity>
     </application>
 
 
