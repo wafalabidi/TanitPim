@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    app:cardCornerRadius="4dp"
+    app:cardUseCompatPadding="true"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_view_background"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:paddingTop="5dp"
+        android:weightSum="2"
+
+        >
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:text="12 Jan 2015"
+            android:textAlignment="center" />
+
+        <TextView
+
+            android:id="@+id/nombreHeure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+
+            android:text="5H"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+</LinearLayout>

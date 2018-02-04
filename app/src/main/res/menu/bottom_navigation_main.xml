@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/Tanit"
+        android:icon="@drawable/tanit"
+        android:title="@string/app_name"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/Analyse"
+        android:icon="@drawable/ic_analyse"
+        android:title="@string/analyse"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/Moi"
+        android:icon="@drawable/ic_profil"
+        android:title="@string/moi"
+        app:showAsAction="ifRoom" />
+
+</menu>

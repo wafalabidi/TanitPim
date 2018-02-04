@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Tanit</string>
+    <string name="analyse" translatable="false">Analyse</string>
+    <string name="moi" translatable="false">Moi</string>
+    <string name="someil" translatable="false">Someil</string>
+    <string name="fertilit" translatable="false">Fertilité</string>
+    <string name="grosses" translatable="false">Grosses</string>
+    <string name="sex" translatable="false">Sexe</string>
+    <string name="sexe">sexe</string>
+    <string name="enregistrer_un_rappel" translatable="false">Enregistrer un Rappel</string>
+    <string name="about_tanit" translatable="false">About Tanit</string>
+    <string name="parametre_du_cycle" translatable="false">Parametre du cycle</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="already_have_account">Already have account</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="birthday">Birthday</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="height">Height</string>
+    <string name="calculateBMI">Calculate BMI</string>
+    <string name="weight">Weight</string>
+    <string name="very_severely_underweight">Very severely underweight</string>
+    <string name="severely_underweight">Severely underweight</string>
+    <string name="underweight">Underweight</string>
+    <string name="normal">Normal</string>
+    <string name="overweight">Overweight</string>
+    <string name="obese_class_i">Obese class i</string>
+    <string name="obese_class_ii">Obese claas ii</string>
+    <string name="obese_class_iii">Obese class iii</string>
+</resources>
