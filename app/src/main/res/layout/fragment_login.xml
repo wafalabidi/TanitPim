@@ -54,7 +54,7 @@
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
                 android:text="wafe"
-                android:textColor="@color/white"
+                android:textColor="@color/divider"
                 android:textColorHint="@color/white"
                 android:textSize="@dimen/text_size_medium" />
 
@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/white" />
+                android:background="@color/divider" />
 
         </RelativeLayout>
 
@@ -96,14 +96,14 @@
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColorHint="@color/divider"
                 android:textSize="@dimen/text_size_medium" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/white" />
+                android:background="@color/divider" />
         </RelativeLayout>
 
         <RelativeLayout

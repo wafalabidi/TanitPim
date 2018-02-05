@@ -29,6 +29,10 @@
         <activity android:name=".Activities.PoidsActivity"
             android:parentActivityName=".Activities.PoidsActivity">
         </activity>
+        <activity android:name=".Activities.FertilityActivity"
+            android:parentActivityName=".Activities.FertilityActivity">
+
+        </activity>
     </application>
 
 

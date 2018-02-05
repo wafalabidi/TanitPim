@@ -79,7 +79,7 @@
                     android:layout_marginStart="5dp"
                     android:paddingTop="10dp"
                     android:text=" Fértilité élevée "
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp"
                     android:textStyle="normal"
                     android:typeface="monospace" />
@@ -110,7 +110,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:paddingStart="4dp"
-                        android:text="Foleculaire"
+                        android:text="Folliculaire"
                         android:textColor="@color/white"
                         android:textSize="24sp" />
 
