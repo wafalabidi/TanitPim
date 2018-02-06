@@ -13,4 +13,5 @@
     <color name="percent15white">#26ffffff</color>
     <color name="fullTransparent">#00000000</color>
     <color name="divider">#8c9e9e9e</color>
+    <color name="confrim_color">#1B9B8D</color>
 </resources>

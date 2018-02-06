@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">Tanit</string>
     <string name="analyse" translatable="false">Analyse</string>
-    <string name="moi" translatable="false">Moi</string>
-    <string name="someil" translatable="false">Someil</string>
-    <string name="fertilit" translatable="false">Fertilité</string>
-    <string name="grosses" translatable="false">Grosses</string>
+    <string name="moi" translatable="false">You</string>
+    <string name="someil" translatable="false">Sleep Time</string>
+    <string name="fertilit" translatable="false">Fertility</string>
+    <string name="grosses" translatable="false">Pregnancy</string>
     <string name="sex" translatable="false">Sexe</string>
     <string name="sexe">sexe</string>
-    <string name="enregistrer_un_rappel" translatable="false">Enregistrer un Rappel</string>
+    <string name="enregistrer_un_rappel" translatable="false">Add A Callaback</string>
     <string name="about_tanit" translatable="false">About Tanit</string>
-    <string name="parametre_du_cycle" translatable="false">Parametre du cycle</string>
+    <string name="parametre_du_cycle" translatable="false">Cycle\'s param</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
     <string name="already_have_account">Already have account</string>
@@ -30,4 +30,13 @@
     <string name="obese_class_i">Obese class i</string>
     <string name="obese_class_ii">Obese claas ii</string>
     <string name="obese_class_iii">Obese class iii</string>
+
+    <string name="facebook_app_id">331759977343695</string>
+    <string name="fb_login_protocol_scheme">fb331759977343695</string>
+    <string name="you_have_choosed_to_sigup_with">You have choosed to SigUp with</string>
+    <string name="proceed">Proceed</string>
+    <string name="update_info">Update Info</string>
+    <string name="is_there_any_info_to_update">Is There Any Info To Update ?</string>
+
+
 </resources>
