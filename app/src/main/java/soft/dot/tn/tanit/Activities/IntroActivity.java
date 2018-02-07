@@ -2,6 +2,7 @@ package soft.dot.tn.tanit.Activities;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,20 +18,20 @@ import soft.dot.tn.tanit.R;
  * Created by Wafee on 03/02/2018.
  */
 
-public class IntroActivity extends AppCompatActivity  {
+public class IntroActivity extends AppCompatActivity {
 
     private static final int LOGIN_FRAGMENT = 1;
     private static final int SIGNUP_FRAGMENT = 2;
     private static final int RESET_PASSWORD_FRAGMENT = 3;
-    private static final int INTRO_FRAGMENT =0;
+    private static final int INTRO_FRAGMENT = 0;
 
     ImageView background;
     AnimationDrawable animationDrawable;
-    Animation zoomin,zoomout;
-    LinearLayout ll_login,ll_signup;
+    Animation zoomin, zoomout;
+    LinearLayout ll_login, ll_signup;
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
-
+    public String date;
 
 
     @Override
@@ -51,7 +52,7 @@ public class IntroActivity extends AppCompatActivity  {
         //Background zoom
         zoomin = AnimationUtils.loadAnimation(this, R.anim.zoomin);
         background.setAnimation(zoomin);
-        zoomout = AnimationUtils.loadAnimation(this , R.anim.zoomout);
+        zoomout = AnimationUtils.loadAnimation(this, R.anim.zoomout);
         zoomin.setAnimationListener(new Animation.AnimationListener() {
 
             @Override
@@ -109,7 +110,6 @@ public class IntroActivity extends AppCompatActivity  {
     }
 
 
-
     private class Zoom implements Runnable {
         @Override
         public void run() {
@@ -124,6 +124,7 @@ public class IntroActivity extends AppCompatActivity  {
             }
         }
     }
+
     private void changeFragment(int fragmentType) {
 
         switch (fragmentType) {
@@ -147,8 +148,10 @@ public class IntroActivity extends AppCompatActivity  {
 
 
     }
+
     public void signUpClick(View view) {
-        changeFragment(SIGNUP_FRAGMENT);   }
+        changeFragment(SIGNUP_FRAGMENT);
+    }
 
     public void signInClick(View view) {
         changeFragment(LOGIN_FRAGMENT);
@@ -158,7 +161,7 @@ public class IntroActivity extends AppCompatActivity  {
         changeFragment(RESET_PASSWORD_FRAGMENT);
     }
 
-    public void backClick(View view){
+    public void backClick(View view) {
         changeFragment(INTRO_FRAGMENT);
     }
 
@@ -171,4 +174,9 @@ public class IntroActivity extends AppCompatActivity  {
             changeFragment(INTRO_FRAGMENT);
         }
     }
+    // Show dialog Fragment
+    public void ShowDialogFragment (DialogFragment dialogFragment,String tag) {
+        dialogFragment.show(getSupportFragmentManager() , tag);
+    }
+
 }
