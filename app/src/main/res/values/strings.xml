@@ -37,6 +37,10 @@
     <string name="proceed">Proceed</string>
     <string name="update_info">Update Info</string>
     <string name="is_there_any_info_to_update">Is There Any Info To Update ?</string>
+    <string name="for_more_accuarate_result_some_more_informations_are_needed">One More Step  </string>
+    <string name="cycle_starting_date">Cycle Starting Date</string>
+    <string name="cycle_duration">Cycle Duration</string>
+    <string name="submit">Submit</string>
 
 
 </resources>

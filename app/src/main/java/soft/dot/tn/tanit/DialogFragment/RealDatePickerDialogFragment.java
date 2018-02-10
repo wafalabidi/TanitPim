@@ -1,14 +1,19 @@
 package soft.dot.tn.tanit.DialogFragment;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
 
+import soft.dot.tn.tanit.Activities.FirstCycleActivity;
 import soft.dot.tn.tanit.Activities.IntroActivity;
+import soft.dot.tn.tanit.LocalStorage.UserSharedPref;
 
 /**
  * Created by sofien on 07/02/2018.
@@ -29,9 +34,28 @@ public class RealDatePickerDialogFragment extends DialogFragment implements Date
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        ((IntroActivity) getActivity()).date = " ";
-        ((IntroActivity) getActivity()).date += day + "-" + month + "-" + year+ "  00:00:00";
-        TimePickerDialogFragment datePickerDialogFragment = new TimePickerDialogFragment();
-        ((IntroActivity) getActivity()).ShowDialogFragment(datePickerDialogFragment,"TimePicker");
+        String date = day + "-" + month + "-" + year + "  00:00:00";
+        if (getActivity() instanceof IntroActivity) {
+            ((IntroActivity) getActivity()).date = " ";
+            ((IntroActivity) getActivity()).date += date;
+            TimePickerDialogFragment datePickerDialogFragment = new TimePickerDialogFragment();
+            ((IntroActivity) getActivity()).ShowDialogFragment(datePickerDialogFragment, "TimePicker");
+        } else if (getActivity() instanceof FirstCycleActivity) {
+            UserSharedPref userSharedPref = new UserSharedPref(getActivity().getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
+            userSharedPref.insertString(UserSharedPref.CYCL_START_DATE, date);
+            ((FirstCycleActivity) getActivity()).WriteDate(date);
+            dismiss();
+        }
+
     }
+
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
+        super.onDismiss(dialog);
+        final Activity activity = getActivity();
+        if (activity instanceof DialogInterface.OnDismissListener) {
+            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
+        }
+    }
+
 }

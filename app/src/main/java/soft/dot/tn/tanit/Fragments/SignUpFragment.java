@@ -35,6 +35,7 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import soft.dot.tn.tanit.Activities.FirstCycleActivity;
 import soft.dot.tn.tanit.Activities.IntroActivity;
 import soft.dot.tn.tanit.Activities.ProvidersDataChecker;
 import soft.dot.tn.tanit.DialogFragment.RealDatePickerDialogFragment;
@@ -185,16 +186,19 @@ public class SignUpFragment extends Fragment implements FacebookCallback<LoginRe
         }
         return true;
     }
-        //Call Back from Successfull SignUP
+
+    //Call Back from Successfull SignUP
     @Override
     public void onResponse(Call<okhttp3.Response> call, Response<okhttp3.Response> response) {
         Log.e("Response", response.message());
         UserSharedPref userSharedPref = new
                 UserSharedPref(getActivity().getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
         userSharedPref.logIn(currentUser);
-        //TODO  Add first login options before moving on
+        Intent intent = new Intent(getActivity(), FirstCycleActivity.class);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
 
     }
+
     //CallBakc from Failed SignUp
     @Override
     public void onFailure(Call<okhttp3.Response> call, Throwable t) {

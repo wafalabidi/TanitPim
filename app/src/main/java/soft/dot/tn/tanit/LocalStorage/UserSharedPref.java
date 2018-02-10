@@ -15,6 +15,11 @@ public class UserSharedPref {
     public static final String USER_LAST_NAME = "USER_LAST_NAME";
     public static final String USER_AGE = "USER_AGE";
     public static final String USER_PASSWRD = "USER_PASSWRD";
+
+    public static final String CYCL_START_DATE = "USER_START_DATE";
+    public static final String CYCL_LENGTH = "USER_LENGH";
+    public static final String CYCL_PERIODE_LENGTH = "periodLength";
+
     SharedPreferences sharedPreferences;
     public static final String USER_FILE = "user";
 
@@ -53,6 +58,9 @@ public class UserSharedPref {
 
     public int getInt(String label) {
         return sharedPreferences.getInt(label, -1);
+    }
+    public long getLong(String label) {
+        return sharedPreferences.getLong(label, -1);
     }
 
     public static void LogOut(SharedPreferences sharedPreferences) {
