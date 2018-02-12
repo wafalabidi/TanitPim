@@ -14,32 +14,23 @@
 
         >
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/WelomeTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:alpha=".7"
-            android:paddingStart="4dp">
+            android:layout_height="?actionBarSize"
+            android:layout_below="@+id/firstLoginToolBar"
+            android:background="@color/white"
+            android:elevation="10dp"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:shadowColor="@color/white"
+            android:shadowDx="-5"
+            android:shadowDy="-5"
+            android:text="Bienvenu , Wafa Labidi "
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bonjour,"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:typeface="serif" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="4dp"
-                android:text="Wafa labidi"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:typeface="serif" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,9 +40,10 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/TodayDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alpha=".4"
+                android:alpha=".6"
                 android:paddingStart="4dp"
                 android:text="2 février 2018"
                 android:textAlignment="center"
@@ -78,8 +70,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:paddingTop="10dp"
-                    android:text=" Fértilité élevée "
-                    android:textColor="@color/colorPrimaryDark"
+                    android:text=" 50% fertility "
+                    android:textColor="@color/colorAccent"
                     android:textSize="24sp"
                     android:textStyle="normal"
                     android:typeface="monospace" />
@@ -89,6 +81,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <LinearLayout
@@ -161,56 +155,33 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="70dp"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/AnalyseButton"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="20dp"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/ic_analyse"
-                    android:tint="@color/black" />
+                    android:tint="@color/colorPrimaryDark" />
 
                 <TextView
+                    android:id="@+id/AnalyseText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:alpha=".5"
                     android:gravity="center"
-                    android:text="Vérifier par vous grace à nos outil de suivit"
+                    android:text="@string/most_accuarate_result_avalaible_now_for_you"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/ic_date"
-                    android:tint="@color/black"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:alpha=".5"
-                    android:gravity="center"
-                    android:text="Aider Tanit à mieux répondre à vos attentes"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -218,23 +189,29 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="2"
 
-                <ImageView
+                >
+
+                <ImageButton
+                    android:id="@+id/profilImageButton"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="20dp"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/ic_profil"
-                    android:tint="@color/black"
+                    android:tint="@color/colorPrimaryDark"
 
                     />
 
                 <TextView
+                    android:id="@+id/profilText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:alpha=".5"
                     android:gravity="center"
-                    android:text="Personaliser votre profil pour un meilleur resultat"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/update_your_info_everyday_to_help_us_helping_you"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 

@@ -3,6 +3,7 @@ package soft.dot.tn.tanit.Activities;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenu;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -16,18 +17,18 @@ import soft.dot.tn.tanit.R;
  */
 
 public abstract class MainActivity extends AppCompatActivity {
-    Toolbar toolbar;
+    Toolbar toolbarLayout;
     BottomNavigationView bottomNavigationView;
 
 
     protected Toolbar SetUpToolbar() {
-        if (this.toolbar == null) {
-            toolbar = findViewById(R.id.toolbar);
-            if (toolbar != null) {
-                setSupportActionBar(toolbar);
-            }
+        if (this.toolbarLayout == null) {
+            toolbarLayout = findViewById(R.id.toolbar);
+           /* if (toolbarLayout != null) {
+                setSupportActionBar(toolbarLayout);
+            }*/
         }
-        return toolbar;
+        return toolbarLayout;
     }
 
     protected BottomNavigationView SetUpBottomNavigation() {

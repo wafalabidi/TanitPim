@@ -1,11 +1,14 @@
 package soft.dot.tn.tanit.Activities;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
 import android.transition.Fade;
@@ -93,7 +96,7 @@ public class FirstCycleActivity extends AppCompatActivity implements View.OnClic
             cycle.setLenght(length);
             cycle.setFolicularLength(priodeLenght);
             CycleDAO cycleDAO = new CycleDAO();
-            cycleDAO.InsertFirstCycle(userSharedPref.getLong(UserSharedPref.USER_ID) , cycle , this);
+            cycleDAO.InsertFirstCycle(userSharedPref.getLong(UserSharedPref.USER_ID), cycle, this);
         } else {
             periodeDuration.setBackground(getResources().getDrawable(R.drawable.missing_data_edittext));
             cycleDuration.setBackground(getResources().getDrawable(R.drawable.missing_data_edittext));
@@ -109,11 +112,12 @@ public class FirstCycleActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-
+        Intent intent = new Intent(this, DashBoardActivity.class);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
     @Override
     public void onFailure(Call<Response> call, Throwable t) {
-
+        Log.e("Add First Cycle :", t.getMessage());
     }
 }

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fragment_round_shape"
-    android:gravity="center_horizontal"
+    android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical">
 
     <Toolbar
@@ -17,19 +18,24 @@
         android:id="@+id/WelomeTextView"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
+        android:layout_below="@+id/firstLoginToolBar"
         android:background="@color/white"
-        android:elevation="30dp"
+        android:elevation="10dp"
         android:gravity="center_vertical"
         android:paddingStart="20dp"
         android:shadowColor="@color/white"
+        android:shadowDx="-5"
+        android:shadowDy="-5"
         android:text="Bienvenu , Wafa Labidi "
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp" />
 
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/WelomeTextView"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:lineSpacingMultiplier="1.2"
@@ -42,10 +48,11 @@
         android:id="@+id/cycleStartingDate"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@+id/text"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:background="#ffbe76"
+        android:background="@drawable/edit_text_dark"
         android:clickable="true"
         android:drawableStart="@drawable/ic_calendar"
         android:focusable="true"
@@ -56,14 +63,14 @@
         android:textSize="14sp" />
 
     <EditText
-
         android:id="@+id/cycleDuration"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@id/cycleStartingDate"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:background="#f6e58d"
+        android:background="@drawable/edit_text_light"
         android:drawableStart="@drawable/ic_duration"
         android:hint="@string/cycle_duration"
         android:inputType="numberDecimal"
@@ -77,12 +84,13 @@
         android:id="@+id/periodeDuration"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@id/cycleDuration"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:background="#f9ca24"
+        android:background="@drawable/edit_text_medium"
         android:drawableStart="@drawable/ic_duration"
-        android:hint="@string/cycle_duration"
+        android:hint="@string/periode_s_duration"
         android:inputType="numberDecimal"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -93,13 +101,15 @@
         android:id="@+id/Submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/confirm_button"
         android:text="@string/submit"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
-</LinearLayout>
+</RelativeLayout>

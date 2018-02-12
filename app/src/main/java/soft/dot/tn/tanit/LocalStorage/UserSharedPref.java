@@ -59,6 +59,7 @@ public class UserSharedPref {
     public int getInt(String label) {
         return sharedPreferences.getInt(label, -1);
     }
+
     public long getLong(String label) {
         return sharedPreferences.getLong(label, -1);
     }
@@ -78,4 +79,10 @@ public class UserSharedPref {
 
     }
 
+    public boolean isUserLogged() {
+        if (getLong(USER_ID) != 0)
+            return true;
+        else
+            return false;
+    }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -38,7 +39,7 @@ import soft.dot.tn.tanit.R;
  */
 
 public class DashBoardActivity extends MainActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-    Toolbar toolbar;
+    Toolbar toolbarLayout;
     BottomNavigationView bottomNavigationView;
     AnalyseFragment analyseFragment;
     TanitFragment tanitFragment;
@@ -46,14 +47,18 @@ public class DashBoardActivity extends MainActivity implements BottomNavigationV
     @BindView(R.id.container)
     ViewPager viewPager;
 
+    public ViewPager getViewPager() {
+        return viewPager;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
-        toolbar = super.SetUpToolbar();
-        toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle("Tanit");
+        toolbarLayout = super.SetUpToolbar();
+       // toolbarLayout.setTitleTextColor(Color.WHITE);
+        //toolbarLayout.setTitle("Tanit");
 
 
         super.SetUpBottomNavigation();
@@ -124,5 +129,8 @@ public class DashBoardActivity extends MainActivity implements BottomNavigationV
         }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        viewPager.setCurrentItem(0,true);
+    }
 }

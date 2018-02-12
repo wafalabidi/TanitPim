@@ -101,8 +101,8 @@ public class ProvidersDataChecker extends AppCompatActivity implements View.OnCl
                 currentUser.setAge(graphJson.getString("birthday"));
                 currentUser.setImager_url(graphJson.getJSONObject("picture").getString("url"));
                 currentUser.setEmail(graphJson.getString("email"));
-
-
+               // currentUser.setImager_url(graphJson.getString("profile_pic"));
+                //TODO recheck facebook image
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -121,7 +121,7 @@ public class ProvidersDataChecker extends AppCompatActivity implements View.OnCl
                 SharedPreferences sharedPreferences = getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE);
                 UserSharedPref userSharedPref = new UserSharedPref(sharedPreferences);
                 userSharedPref.logIn(currentUser);
-                Intent intent = new Intent(this, DashBoardActivity.class);
+                Intent intent = new Intent(this, FirstCycleActivity.class);
                 Log.e("UserSubscribed ", currentUser.toString());
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
             } else {

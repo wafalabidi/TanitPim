@@ -1,5 +1,8 @@
 package soft.dot.tn.tanit.Activities;
 
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -12,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import soft.dot.tn.tanit.Adapters.ViewPagerAdapter;
+import soft.dot.tn.tanit.LocalStorage.UserSharedPref;
 import soft.dot.tn.tanit.R;
 
 /**
@@ -91,6 +95,12 @@ public class IntroActivity extends AppCompatActivity {
 
             }
         });
+
+        UserSharedPref userSharedPref = new UserSharedPref(getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
+        if (userSharedPref.isUserLogged()) {
+            Intent intent = new Intent(this, DashBoardActivity.class);
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        }
     }
 
     @Override
@@ -174,9 +184,10 @@ public class IntroActivity extends AppCompatActivity {
             changeFragment(INTRO_FRAGMENT);
         }
     }
+
     // Show dialog Fragment
-    public void ShowDialogFragment (DialogFragment dialogFragment,String tag) {
-        dialogFragment.show(getSupportFragmentManager() , tag);
+    public void ShowDialogFragment(DialogFragment dialogFragment, String tag) {
+        dialogFragment.show(getSupportFragmentManager(), tag);
     }
 
 }
