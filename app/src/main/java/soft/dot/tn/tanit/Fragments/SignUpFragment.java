@@ -48,7 +48,7 @@ import soft.dot.tn.tanit.Services.UserDAO;
  * Created by Wafee on 04/02/2018.
  */
 
-public class SignUpFragment extends Fragment implements FacebookCallback<LoginResult>, View.OnClickListener, Callback<okhttp3.Response> {
+public class SignUpFragment extends Fragment implements FacebookCallback<LoginResult>, View.OnClickListener, Callback<okhttp3.ResponseBody> {
 
     @BindView(R.id.login_facebook)
     LoginButton loginButtonFacebook;
@@ -84,6 +84,7 @@ public class SignUpFragment extends Fragment implements FacebookCallback<LoginRe
 
         SetUpFacebook(); // Setup Facebook login
         clickable_birthday_layout.setOnClickListener(this);
+        signup_button.setOnClickListener(this);
         return view;
     }
 
@@ -148,6 +149,7 @@ public class SignUpFragment extends Fragment implements FacebookCallback<LoginRe
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.clickable_birthday_layout) {
@@ -162,7 +164,7 @@ public class SignUpFragment extends Fragment implements FacebookCallback<LoginRe
                 currentUser.setPassword(password.getText().toString());
                 currentUser.setAge(((IntroActivity) getActivity()).date);
                 currentUser.setEmail(email_edittext.getText().toString());
-                currentUser.setId(System.currentTimeMillis());
+               // currentUser.setId(System.currentTimeMillis());
                 UserDAO userDAO = new UserDAO();
                 userDAO.SignUpUser(currentUser, this);
             }
@@ -189,11 +191,13 @@ public class SignUpFragment extends Fragment implements FacebookCallback<LoginRe
 
     //Call Back from Successfull SignUP
     @Override
-    public void onResponse(Call<okhttp3.Response> call, Response<okhttp3.Response> response) {
+    public void onResponse(Call<okhttp3.ResponseBody> call, Response<okhttp3.ResponseBody> response) {
         Log.e("Response", response.message());
         UserSharedPref userSharedPref = new
                 UserSharedPref(getActivity().getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
+
         userSharedPref.logIn(currentUser);
+        userSharedPref.insertInt(UserSharedPref.USER_ID , 1) ; //TODO change with dynamic id
         Intent intent = new Intent(getActivity(), FirstCycleActivity.class);
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
 
@@ -201,7 +205,7 @@ public class SignUpFragment extends Fragment implements FacebookCallback<LoginRe
 
     //CallBakc from Failed SignUp
     @Override
-    public void onFailure(Call<okhttp3.Response> call, Throwable t) {
+    public void onFailure(Call<okhttp3.ResponseBody> call, Throwable t) {
         Log.e("Response", t.getMessage());
 
     }

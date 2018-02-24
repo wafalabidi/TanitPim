@@ -10,7 +10,7 @@ import java.util.Date;
  */
 
 public class User {
-    private long id;
+    private int id;
     @Expose
     @SerializedName("username")
     private String username;
@@ -61,7 +61,7 @@ public class User {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

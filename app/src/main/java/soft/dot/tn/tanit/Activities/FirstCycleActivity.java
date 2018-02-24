@@ -20,6 +20,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import soft.dot.tn.tanit.DialogFragment.RealDatePickerDialogFragment;
@@ -32,7 +33,7 @@ import soft.dot.tn.tanit.Services.CycleDAO;
  * Created by sofien on 08/02/2018.
  */
 
-public class FirstCycleActivity extends AppCompatActivity implements View.OnClickListener, Callback<Response> {
+public class FirstCycleActivity extends AppCompatActivity implements View.OnClickListener, Callback<ResponseBody> {
     @BindView(R.id.WelomeTextView)
     TextView WelomeTextView;
     @BindView(R.id.cycleDuration)
@@ -83,6 +84,7 @@ public class FirstCycleActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    // Check Data integrity and lunch addFirstCycle service
     private void validateData() {
         if ((!TextUtils.isEmpty(periodeDuration.getText().toString())) && (!TextUtils.isEmpty(cycleDuration.getText().toString()))) {
             int priodeLenght = Integer.valueOf(periodeDuration.getText().toString());
@@ -92,11 +94,11 @@ public class FirstCycleActivity extends AppCompatActivity implements View.OnClic
             userSharedPref.insertInt(UserSharedPref.CYCL_LENGTH, length);
             userSharedPref.insertInt(UserSharedPref.CYCL_START_DATE, priodeLenght);
             Cycle cycle = new Cycle();
-            cycle.setStartDate(userSharedPref.getString(UserSharedPref.CYCL_START_DATE));
+            cycle.setStartDate(cycleStartingDate.getText().toString());
             cycle.setLenght(length);
             cycle.setFolicularLength(priodeLenght);
             CycleDAO cycleDAO = new CycleDAO();
-            cycleDAO.InsertFirstCycle(userSharedPref.getLong(UserSharedPref.USER_ID), cycle, this);
+            cycleDAO.InsertFirstCycle(userSharedPref.getInt(UserSharedPref.USER_ID), cycle, this);
         } else {
             periodeDuration.setBackground(getResources().getDrawable(R.drawable.missing_data_edittext));
             cycleDuration.setBackground(getResources().getDrawable(R.drawable.missing_data_edittext));
@@ -105,19 +107,21 @@ public class FirstCycleActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    // Data return from fragmentDialog
     public void WriteDate(String date) {
         cycleStartingDate.setText(date);
     }
 
 
     @Override
-    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+    public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+        Log.e("First Cycle ", "all good ");
         Intent intent = new Intent(this, DashBoardActivity.class);
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
     @Override
-    public void onFailure(Call<Response> call, Throwable t) {
+    public void onFailure(Call<ResponseBody> call, Throwable t) {
         Log.e("Add First Cycle :", t.getMessage());
     }
 }

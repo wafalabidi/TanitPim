@@ -26,15 +26,20 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import soft.dot.tn.tanit.Entitites.User;
 import soft.dot.tn.tanit.LocalStorage.UserSharedPref;
 import soft.dot.tn.tanit.R;
+import soft.dot.tn.tanit.Services.UserDAO;
 
 /**
  * Created by sofien on 05/02/2018.
  */
 
-public class ProvidersDataChecker extends AppCompatActivity implements View.OnClickListener {
+public class ProvidersDataChecker extends AppCompatActivity implements View.OnClickListener, Callback<ResponseBody> {
 
     public static final int FACEBOOK_PROVIDER = 1;
     public static final int GOOGLE_PROVIDER = 2;
@@ -97,12 +102,14 @@ public class ProvidersDataChecker extends AppCompatActivity implements View.OnCl
                 currentUser = new User();
                 currentUser.setFirstName(graphJson.getString("first_name"));
                 currentUser.setLastName(graphJson.getString("last_name"));
-                currentUser.setId(graphJson.getInt("id"));
+                // currentUser.setId(graphJson.getInt("id"));
                 currentUser.setAge(graphJson.getString("birthday"));
                 currentUser.setImager_url(graphJson.getJSONObject("picture").getString("url"));
                 currentUser.setEmail(graphJson.getString("email"));
-               // currentUser.setImager_url(graphJson.getString("profile_pic"));
+                // currentUser.setImager_url(graphJson.getString("profile_pic"));
                 //TODO recheck facebook image
+                UserDAO userDAO = new UserDAO();
+                userDAO.SignUpUser(currentUser, this);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -136,6 +143,17 @@ public class ProvidersDataChecker extends AppCompatActivity implements View.OnCl
         firstname_edittext.setText(currentUser.getFirstName());
         username_edittext.setText(currentUser.getLastName());
         birthday_edittext.setText(currentUser.getAge());
+
+    }
+
+    @Override
+    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        Log.e("Signup Facebook " , "all good ") ;
+    }
+
+    @Override
+    public void onFailure(Call<ResponseBody> call, Throwable t) {
+        Log.e("Signup Facebook " , t.getMessage()) ;
 
     }
 }

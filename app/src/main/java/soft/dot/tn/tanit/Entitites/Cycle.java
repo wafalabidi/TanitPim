@@ -12,7 +12,7 @@ public class Cycle {
     @SerializedName("id")
     private long id;
     @Expose
-    @SerializedName("fertilityStartDate")
+    @SerializedName("startDate")
     private String startDate;
     @Expose
     @SerializedName("length")

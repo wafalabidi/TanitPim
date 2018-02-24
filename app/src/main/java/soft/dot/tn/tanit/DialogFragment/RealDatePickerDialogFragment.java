@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
@@ -34,7 +35,19 @@ public class RealDatePickerDialogFragment extends DialogFragment implements Date
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        String date = day + "-" + month + "-" + year + "  00:00:00";
+        String DD;
+        String MM = "" + month;
+        if (month < 10) {
+            MM = "0" + month;
+        }
+        if (day < 10) {
+            DD = "0" + day;
+        } else {
+            DD = "" + day;
+        }
+        String date = DD + "-" + MM + "-" + year + " 00:00:00";
+        Log.e("Date   :   " , date );
+
         if (getActivity() instanceof IntroActivity) {
             ((IntroActivity) getActivity()).date = " ";
             ((IntroActivity) getActivity()).date += date;

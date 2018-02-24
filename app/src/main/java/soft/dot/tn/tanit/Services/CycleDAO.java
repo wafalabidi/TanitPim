@@ -1,6 +1,7 @@
 package soft.dot.tn.tanit.Services;
 
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import soft.dot.tn.tanit.Entitites.Cycle;
@@ -11,10 +12,11 @@ import soft.dot.tn.tanit.Utils.API.RetrofitClient;
  */
 
 public class CycleDAO {
-    public void InsertFirstCycle(long id, Cycle cycle, Callback<Response> callback) {
+    public void InsertFirstCycle(int id, Cycle cycle, Callback<ResponseBody> callback) {
         RetrofitClient retrofitClient = new RetrofitClient();
         ICycleDAO iUserDAO = retrofitClient.getRetrofit().create(ICycleDAO.class);
-        Call<Response> call = iUserDAO.insertFirstCycle(id, cycle);
+        String url = "/cycle/first/" + id;
+        Call<ResponseBody> call = iUserDAO.insertFirstCycle(url, cycle);
         call.enqueue(callback);
     }
 }
