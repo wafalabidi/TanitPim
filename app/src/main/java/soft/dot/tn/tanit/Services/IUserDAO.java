@@ -1,7 +1,6 @@
 package soft.dot.tn.tanit.Services;
 
 
-import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -14,6 +13,6 @@ import soft.dot.tn.tanit.Entitites.User;
 
 public interface IUserDAO {
     @POST("/users/")
-    Call<ResponseBody> signUp (@Body User user);
+    Call<ResponseBody> signUp(@Body User user);
 
 }

@@ -19,6 +19,7 @@ public class UserSharedPref {
     public static final String CYCL_START_DATE = "USER_START_DATE";
     public static final String CYCL_LENGTH = "USER_LENGH";
     public static final String CYCL_PERIODE_LENGTH = "periodLength";
+    public static final String CYCL_IS_IN_CYCLE = "isInCycle";
 
     SharedPreferences sharedPreferences;
     public static final String USER_FILE = "user";
@@ -52,8 +53,22 @@ public class UserSharedPref {
     public boolean inserLong(String label, long newInt) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putLong(label, newInt);
+
         editor.apply();
         return editor.commit();
+    }
+
+    public boolean insertBollean(String label, boolean bool) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(label, bool);
+
+        editor.apply();
+        return editor.commit();
+
+    }
+
+    public boolean getBoolean(String label) {
+        return sharedPreferences.getBoolean(label, false);
     }
 
     public int getInt(String label) {
@@ -61,7 +76,7 @@ public class UserSharedPref {
     }
 
     public long getLong(String label) {
-        return sharedPreferences.getLong(label, -1);
+        return sharedPreferences.getLong(label,  -1L);
     }
 
     public static void LogOut(SharedPreferences sharedPreferences) {
@@ -80,7 +95,7 @@ public class UserSharedPref {
     }
 
     public boolean isUserLogged() {
-        if (getLong(USER_ID) != 0)
+        if (getInt(USER_ID) != 0)
             return true;
         else
             return false;

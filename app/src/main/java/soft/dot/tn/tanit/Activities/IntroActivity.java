@@ -96,11 +96,11 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
-      /*  UserSharedPref userSharedPref = new UserSharedPref(getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
+        UserSharedPref userSharedPref = new UserSharedPref(getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
         if (userSharedPref.isUserLogged()) {
             Intent intent = new Intent(this, DashBoardActivity.class);
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-        }*/
+        }
     }
 
     @Override

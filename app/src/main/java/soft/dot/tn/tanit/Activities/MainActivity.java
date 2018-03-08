@@ -23,7 +23,7 @@ public abstract class MainActivity extends AppCompatActivity {
 
     protected Toolbar SetUpToolbar() {
         if (this.toolbarLayout == null) {
-            toolbarLayout = findViewById(R.id.toolbar);
+            //toolbarLayout = findViewById(R.id.toolbar);
            if (toolbarLayout != null) {
                 setSupportActionBar(toolbarLayout);
             }

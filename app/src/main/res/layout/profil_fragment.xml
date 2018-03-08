@@ -1,135 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/transparent_calque"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:elevation="5dp"
-        app:cardUseCompatPadding="true">
+        android:layout_height="match_parent"
+        android:background="@drawable/transparent_calque"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:elevation="5dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/cycleStartLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/it_s_coming_down"
+                            android:textAlignment="center"
+                            android:textColor="@color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButtonCycleStart"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/white"
+                            android:src="@drawable/if_wifi" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/cycleEndLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/it_s_over"
+                            android:textAlignment="center"
+                            android:textColor="@color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButtonCycleEnd"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/white"
+                            android:src="@drawable/cycle_end" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/cycleStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="4dp"
+                    android:alpha=".7"
+                    android:text="Aucun Cycle en cours"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <Button
+            android:id="@+id/cycleParams"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/text_view_background"
+            android:drawableEnd="@drawable/if_clock"
+            android:padding="5dp"
+            android:paddingStart="20dp"
+            android:text="@string/parametre_du_cycle"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:background="@drawable/text_view_background"
+            android:drawableEnd="@drawable/if_add"
+            android:padding="5dp"
+            android:paddingStart="20dp"
+            android:text="@string/enregistrer_un_rappel"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent" />
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/images" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/text_view_background"
+            android:drawableEnd="@drawable/if_alert_small"
+            android:padding="5dp"
+            android:paddingStart="20dp"
+            android:text="@string/about_tanit"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="4dp"
-                android:text="Wafa Labidi"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="4dp"
-                android:alpha=".7"
-                android:text="Aucun Cycle en cours"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/facebook" />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/twitter" />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/instagram" />
+
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/text_view_background"
-        android:drawableStart="@drawable/alarm"
-        android:paddingStart="20dp"
-        android:text="@string/parametre_du_cycle"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/colorAccent" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/text_view_background"
-        android:drawableStart="@drawable/rappel"
-        android:paddingStart="20dp"
-        android:text="@string/enregistrer_un_rappel"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/colorAccent" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/text_view_background"
-        android:drawableStart="@drawable/about"
-        android:paddingStart="20dp"
-        android:text="@string/about_tanit"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/colorAccent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/facebook" />
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/twitter" />
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/instagram" />
-
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
