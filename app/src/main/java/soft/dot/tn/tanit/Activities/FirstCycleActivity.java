@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import android.widget.Toolbar;
 import android.transition.Fade;
 import android.view.View;
@@ -92,13 +93,13 @@ public class FirstCycleActivity extends AppCompatActivity implements View.OnClic
 
             UserSharedPref userSharedPref = new UserSharedPref(getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
             userSharedPref.insertInt(UserSharedPref.CYCL_LENGTH, length);
-            userSharedPref.insertInt(UserSharedPref.CYCL_START_DATE, priodeLenght);
+            userSharedPref.insertInt(UserSharedPref.CYCL_PERIODE_LENGTH, priodeLenght);
             Cycle cycle = new Cycle();
             cycle.setStartDate(cycleStartingDate.getText().toString());
             cycle.setLenght(length);
             cycle.setFolicularLength(priodeLenght);
             CycleDAO cycleDAO = new CycleDAO();
-            cycleDAO.InsertFirstCycle(userSharedPref.getInt(UserSharedPref.USER_ID), cycle, this);
+            cycleDAO.InsertFirstCycle( userSharedPref.getInt(UserSharedPref.USER_ID), cycle, this);
         } else {
             periodeDuration.setBackground(getResources().getDrawable(R.drawable.missing_data_edittext));
             cycleDuration.setBackground(getResources().getDrawable(R.drawable.missing_data_edittext));

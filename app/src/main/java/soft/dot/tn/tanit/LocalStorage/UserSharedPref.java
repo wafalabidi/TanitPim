@@ -24,6 +24,13 @@ public class UserSharedPref {
     SharedPreferences sharedPreferences;
     public static final String USER_FILE = "user";
 
+    public SharedPreferences getSharedPreferences() {
+        return sharedPreferences;
+    }
+
+    public void setSharedPreferences(SharedPreferences sharedPreferences) {
+        this.sharedPreferences = sharedPreferences;
+    }
 
     //    public static final String  ;
     public static final String LIKES = "LikesSet";
@@ -76,10 +83,10 @@ public class UserSharedPref {
     }
 
     public long getLong(String label) {
-        return sharedPreferences.getLong(label,  -1L);
+        return sharedPreferences.getLong(label,   -1L);
     }
 
-    public static void LogOut(SharedPreferences sharedPreferences) {
+    public static void logOut(SharedPreferences sharedPreferences) {
 
         sharedPreferences.edit().clear().apply();
     }
@@ -90,12 +97,12 @@ public class UserSharedPref {
         insertString(UserSharedPref.USER_PASSWRD, user.getPassword());
         insertString(UserSharedPref.EMAIL, user.getEmail());
         insertString(UserSharedPref.USER_AGE, user.getAge());
-        inserLong(UserSharedPref.USER_ID, user.getId());
+        insertInt(UserSharedPref.USER_ID, user.getId());
 
     }
 
     public boolean isUserLogged() {
-        if (getInt(USER_ID) != 0)
+        if (getInt(USER_ID) != -1)
             return true;
         else
             return false;

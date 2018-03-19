@@ -6,20 +6,19 @@ import com.google.gson.annotations.SerializedName;
 import java.sql.Date;
 
 /**
- * Created by sofien on 03/02/2018.
+ * Created by Wafee on 05/02/2018.
  */
 
-public class TemperatureData {
-
+public class WeightData {
     @Expose
     @SerializedName("id")
     int id;
     @Expose
-    @SerializedName("entryDate")
-    String entryDate;
-    @Expose
     @SerializedName("value")
     float value;
+    @Expose
+    @SerializedName("entryDate")
+    String entryDate;
 
     public int getId() {
         return id;
@@ -45,7 +44,8 @@ public class TemperatureData {
         this.value = value;
     }
 
-    public TemperatureData(String date, float value) {
+    public WeightData(String date, float value) {
+
         this.entryDate = date;
         this.value = value;
     }

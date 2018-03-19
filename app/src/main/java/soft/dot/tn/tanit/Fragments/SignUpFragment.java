@@ -2,6 +2,7 @@ package soft.dot.tn.tanit.Fragments;
 
 import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,7 @@ import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,7 +50,7 @@ import soft.dot.tn.tanit.Services.UserDAO;
  * Created by Wafee on 04/02/2018.
  */
 
-public class SignUpFragment extends Fragment implements FacebookCallback<LoginResult>, View.OnClickListener, Callback<okhttp3.ResponseBody> {
+public class SignUpFragment extends Fragment implements FacebookCallback<LoginResult>, View.OnClickListener, Callback<String> {
 
     @BindView(R.id.login_facebook)
     LoginButton loginButtonFacebook;
@@ -70,7 +72,6 @@ public class SignUpFragment extends Fragment implements FacebookCallback<LoginRe
     User currentUser;
 
     public SignUpFragment() {
-        // Required empty public constructor
     }
 
 
@@ -155,7 +156,7 @@ public class SignUpFragment extends Fragment implements FacebookCallback<LoginRe
         if (view.getId() == R.id.clickable_birthday_layout) {
             RealDatePickerDialogFragment realDatePickerDialogFragment = new RealDatePickerDialogFragment();
             ((IntroActivity) getActivity()).ShowDialogFragment(realDatePickerDialogFragment, "DatePicker");
-
+            //  realDatePickerDialogFragment.onDismiss(this);
         } else if (view.getId() == R.id.signup_button) {
             if (allDataFilled()) {
                 currentUser = new User();
@@ -164,7 +165,7 @@ public class SignUpFragment extends Fragment implements FacebookCallback<LoginRe
                 currentUser.setPassword(password.getText().toString());
                 currentUser.setAge(((IntroActivity) getActivity()).date);
                 currentUser.setEmail(email_edittext.getText().toString());
-               // currentUser.setId(System.currentTimeMillis());
+                // currentUser.setId(System.currentTimeMillis());
                 UserDAO userDAO = new UserDAO();
                 userDAO.SignUpUser(currentUser, this);
             }
@@ -191,22 +192,27 @@ public class SignUpFragment extends Fragment implements FacebookCallback<LoginRe
 
     //Call Back from Successfull SignUP
     @Override
-    public void onResponse(Call<okhttp3.ResponseBody> call, Response<okhttp3.ResponseBody> response) {
-        Log.e("Response", response.message());
-        UserSharedPref userSharedPref = new
-                UserSharedPref(getActivity().getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
+    public void onResponse(Call<String> call, Response<String> response) {
+        if(response.body().contains("success")){
 
-        userSharedPref.logIn(currentUser);
-        userSharedPref.insertInt(UserSharedPref.USER_ID , 1) ; //TODO change with dynamic id
-        Intent intent = new Intent(getActivity(), FirstCycleActivity.class);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+            UserSharedPref.logOut(getActivity().getSharedPreferences(UserSharedPref.USER_FILE , Context.MODE_PRIVATE));
+            //userSharedPref.logIn(currentUser);
+            // userSharedPref.insertInt(UserSharedPref.USER_ID, currentUser.getId());
+            Log.e("User in fragment" , currentUser.toString());
+            ((IntroActivity) getActivity()).setUpLogin(currentUser);
+        }
 
     }
 
     //CallBakc from Failed SignUp
     @Override
-    public void onFailure(Call<okhttp3.ResponseBody> call, Throwable t) {
-        Log.e("Response", t.getMessage());
+    public void onFailure(Call<String> call, Throwable t) {
+        Log.e("Response", t.toString());
 
     }
+
+    public void signUpUser(User user) {
+
+    }
+
 }

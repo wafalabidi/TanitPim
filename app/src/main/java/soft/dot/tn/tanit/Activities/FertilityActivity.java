@@ -45,20 +45,20 @@ public class FertilityActivity extends AppCompatActivity {
 
     private void SetUpChart() {
         ArrayList<TemperatureData> temps = new ArrayList<>();
-        temps.add(new TemperatureData(new Date(2017, 2, 5), 37.5f));
-        temps.add(new TemperatureData(new Date(2017, 2, 6), 36.5f));
-        temps.add(new TemperatureData(new Date(2017, 2, 7), 36.4f));
-        temps.add(new TemperatureData(new Date(2017, 2, 8), 36.2f));
-        temps.add(new TemperatureData(new Date(2017, 2, 9), 36.8f));
-        temps.add(new TemperatureData(new Date(2017, 2, 10), 36.1f));
-        temps.add(new TemperatureData(new Date(2017, 2, 11), 36.9f));
-        temps.add(new TemperatureData(new Date(2017, 2, 12), 36.2f));
-        temps.add(new TemperatureData(new Date(2017, 2, 13), 36.0f));
-        temps.add(new TemperatureData(new Date(2017, 2, 14), 36.6f));
+        temps.add(new TemperatureData( "A", 37.5f));
+        temps.add(new TemperatureData("A", 36.5f));
+        temps.add(new TemperatureData("A", 36.4f));
+        temps.add(new TemperatureData("A", 36.2f));
+        temps.add(new TemperatureData("A", 36.8f));
+        temps.add(new TemperatureData("A", 36.1f));
+        temps.add(new TemperatureData("A", 36.9f));
+        temps.add(new TemperatureData("A", 36.2f));
+        temps.add(new TemperatureData(new Date(2017, 2, 13).toString(), 36.0f));
+        temps.add(new TemperatureData(new Date(2017, 2, 14).toString(), 36.6f));
 
         List<Entry> entries = new ArrayList<>();
         for (TemperatureData temp : temps) {
-            entries.add(new Entry((float) temp.getDate().getDay(), temp.getValue()));
+         //   entries.add(new Entry( temp.getDate(), temp.getValue()));
         }
         LineDataSet dataSet = new LineDataSet(entries, "Temperature");
         dataSet.setValueTextColor(R.color.colorAccent);

@@ -19,8 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import soft.dot.tn.tanit.Entitites.Poids;
-import soft.dot.tn.tanit.Entitites.TemperatureData;
+import soft.dot.tn.tanit.Entitites.WeightData;
 import soft.dot.tn.tanit.R;
 
 /**
@@ -98,23 +97,23 @@ public class PoidsActivity extends AppCompatActivity {
 
 
     private void SetUpChart() {
-        ArrayList<Poids> poids = new ArrayList<>();
-       poids.add(new Poids(new Date(2017, 2, 5), 60));
-       poids.add(new Poids(new Date(2017, 2, 6), 60.5f));
-       poids.add(new Poids(new Date(2017, 2, 7), 53.4f));
-       poids.add(new Poids(new Date(2017, 2, 8), 68.2f));
-       poids.add(new Poids(new Date(2017, 2, 9), 70.8f));
-       poids.add(new Poids(new Date(2017, 2, 10), 68.1f));
-       poids.add(new Poids(new Date(2017, 2, 11), 72.9f));
-       poids.add(new Poids(new Date(2017, 2, 12), 72.2f));
-       poids.add(new Poids(new Date(2017, 2, 13), 100.0f));
-       poids.add(new Poids(new Date(2017, 2, 14), 70.6f));
+        ArrayList<WeightData> poids = new ArrayList<>();
+       poids.add(new WeightData(new Date(2017, 2, 5).toString(), 60));
+       poids.add(new WeightData(new Date(2017, 2, 6).toString(), 60.5f));
+       poids.add(new WeightData(new Date(2017, 2, 7).toString(), 53.4f));
+       poids.add(new WeightData(new Date(2017, 2, 8).toString(), 68.2f));
+       poids.add(new WeightData(new Date(2017, 2, 9).toString(), 70.8f));
+       poids.add(new WeightData(new Date(2017, 2, 10).toString(), 68.1f));
+       poids.add(new WeightData(new Date(2017, 2, 11).toString(), 72.9f));
+       poids.add(new WeightData(new Date(2017, 2, 12).toString(), 72.2f));
+       poids.add(new WeightData(new Date(2017, 2, 13).toString(), 100.0f));
+       poids.add(new WeightData(new Date(2017, 2, 14).toString(), 70.6f));
 
         List<Entry> entries = new ArrayList<>();
-        for (Poids p : poids) {
-            entries.add(new Entry((float) p.getDate().getDay(), p.getValue()));
+        for (WeightData p : poids) {
+           // entries.add(new Entry((float) p.getDate().getDay(), p.getValue()));
         }
-        LineDataSet dataSet = new LineDataSet(entries, "Poids");
+        LineDataSet dataSet = new LineDataSet(entries, "WeightData");
         dataSet.setValueTextColor(R.color.colorAccent);
         LineData lineData = new LineData(dataSet);
         lineChart.setData(lineData);

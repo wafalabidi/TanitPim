@@ -15,12 +15,19 @@ import soft.dot.tn.tanit.Utils.API.RetrofitClient;
 
 public class UserDAO {
 
-    public void SignUpUser(User user, Callback<ResponseBody> callback) {
+    public void SignUpUser(User user, Callback<String> callback) {
 
         RetrofitClient retrofitClient = new RetrofitClient();
         IUserDAO iUserDAO = retrofitClient.getRetrofit().create(IUserDAO.class);
-        Call<ResponseBody> call = iUserDAO.signUp(user);
+        Call<String> call = iUserDAO.signUp(user);
         call.enqueue(callback);
     }
 
+    public void logIn(User user, Callback<User> callback) {
+        RetrofitClient retrofitClient = new RetrofitClient();
+        IUserDAO iUserDAO = retrofitClient.getRetrofit().create(IUserDAO.class);
+        Call<User> call = iUserDAO.logIn(user);
+        call.enqueue(callback);
+
+    }
 }

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.danlew.android.joda.DateUtils;
 import net.danlew.android.joda.JodaTimeAndroid;
@@ -30,6 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import soft.dot.tn.tanit.Activities.FirstCycleActivity;
+import soft.dot.tn.tanit.Activities.IntroActivity;
 import soft.dot.tn.tanit.LocalStorage.UserSharedPref;
 import soft.dot.tn.tanit.R;
 import soft.dot.tn.tanit.Services.CycleDAO;
@@ -52,6 +54,10 @@ public class ProfilFragment extends Fragment implements View.OnClickListener, Ca
     Button cycleParams;
     @BindView(R.id.cycleStatus)
     TextView cycleStatus;
+    @BindView(R.id.about)
+    Button about;
+    @BindView(R.id.logOut)
+    Button logOut;
     CycleDAO cycleDAO;
     UserSharedPref userSharedPref;
     View view;
@@ -65,6 +71,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener, Ca
         instatiateStorage();
         setClickListenr();
         setUpUI();
+
         return view;
     }
 
@@ -76,7 +83,7 @@ public class ProfilFragment extends Fragment implements View.OnClickListener, Ca
                 userSharedPref.insertBollean(UserSharedPref.CYCL_IS_IN_CYCLE, false);
                 cycleDAO.EndCycle(userSharedPref.getInt(UserSharedPref.USER_ID), this);
                 long startDate = userSharedPref.getLong(UserSharedPref.CYCL_START_DATE);
-                if (startDate != -1) {
+                if (startDate != 0) {
                     int duration = calculateCycleDuration();
                     Log.e("Cycle duration : ", "Cycle Duration Days: " + duration);
                     Snackbar.make(view, "We hope it was cool , madame  ", Snackbar.LENGTH_SHORT).show();
@@ -93,6 +100,15 @@ public class ProfilFragment extends Fragment implements View.OnClickListener, Ca
             case R.id.cycleParams:
                 Intent intent = new Intent(getActivity(), FirstCycleActivity.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+                break;
+            case R.id.about:
+                Snackbar.make(view, "Power by Groupe el pim ", Snackbar.LENGTH_SHORT).show();
+
+                break;
+            case R.id.logOut:
+                UserSharedPref.logOut(userSharedPref.getSharedPreferences());
+                Intent intent1 = new Intent(getActivity(), IntroActivity.class);
+                startActivity(intent1, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 break;
             default:
                 break;
@@ -118,9 +134,12 @@ public class ProfilFragment extends Fragment implements View.OnClickListener, Ca
 
     //Set up the UI for everyUser
     private void setUpUI() {
+
         if (userSharedPref.getBoolean(UserSharedPref.CYCL_IS_IN_CYCLE)) {
             cycleEndLayout.setVisibility(View.VISIBLE);
             cycleStartLayout.setVisibility(View.GONE);
+
+
             int cycleDuration = calculateCycleDuration();
             if (cycleDuration > 0) {
                 String cycleMessage = cycleDuration + " days since benediction started ";
@@ -129,10 +148,10 @@ public class ProfilFragment extends Fragment implements View.OnClickListener, Ca
                 cycleStatus.setText("Benedction started today");
             }
         } else {
+            cycleStatus.setText("No cycle yet ?");
 
             cycleStartLayout.setVisibility(View.VISIBLE);
             cycleEndLayout.setVisibility(View.GONE);
-
         }
     }
 
@@ -140,13 +159,18 @@ public class ProfilFragment extends Fragment implements View.OnClickListener, Ca
         cycleParams.setOnClickListener(this);
         imageButtonCycleEnd.setOnClickListener(this);
         imageButtonCycleStart.setOnClickListener(this);
+        about.setOnClickListener(this);
+        logOut.setOnClickListener(this);
     }
 
     private int calculateCycleDuration() {
-        java.util.Date sDate = new Date(userSharedPref.getLong(UserSharedPref.CYCL_START_DATE));
-        java.util.Date eDate = new Date(System.currentTimeMillis());
-        GregorianCalendar startDate = new GregorianCalendar(sDate.getYear(), sDate.getMonth(), sDate.getDay());
-        GregorianCalendar endDate = new GregorianCalendar(eDate.getYear(), eDate.getMonth(), eDate.getDay());
-        return endDate.get(Calendar.DAY_OF_MONTH) - startDate.get(Calendar.DAY_OF_MONTH);
+        if (userSharedPref.getLong(UserSharedPref.CYCL_START_DATE) != -1L) {
+            java.util.Date sDate = new Date(userSharedPref.getLong(UserSharedPref.CYCL_START_DATE));
+            java.util.Date eDate = new Date(System.currentTimeMillis());
+            GregorianCalendar startDate = new GregorianCalendar(sDate.getYear(), sDate.getMonth(), sDate.getDay());
+            GregorianCalendar endDate = new GregorianCalendar(eDate.getYear(), eDate.getMonth(), eDate.getDay());
+            return endDate.get(Calendar.DAY_OF_MONTH) - startDate.get(Calendar.DAY_OF_MONTH);
+        }
+        return 0;
     }
 }

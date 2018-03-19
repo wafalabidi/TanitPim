@@ -2,47 +2,58 @@ package soft.dot.tn.tanit.Activities;
 
 import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import soft.dot.tn.tanit.Adapters.ViewPagerAdapter;
+import soft.dot.tn.tanit.Entitites.User;
+import soft.dot.tn.tanit.Fragments.SignUpFragment;
 import soft.dot.tn.tanit.LocalStorage.UserSharedPref;
 import soft.dot.tn.tanit.R;
+import soft.dot.tn.tanit.Services.UserDAO;
 
 /**
  * Created by Wafee on 03/02/2018.
  */
 
-public class IntroActivity extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity implements DialogInterface , Callback<User> {
 
-    private static final int LOGIN_FRAGMENT = 1;
-    private static final int SIGNUP_FRAGMENT = 2;
-    private static final int RESET_PASSWORD_FRAGMENT = 3;
-    private static final int INTRO_FRAGMENT = 0;
+    public static final int LOGIN_FRAGMENT = 1;
+    public static final int SIGNUP_FRAGMENT = 2;
+    public static final int RESET_PASSWORD_FRAGMENT = 3;
+    public static final int INTRO_FRAGMENT = 0;
 
     ImageView background;
     AnimationDrawable animationDrawable;
     Animation zoomin, zoomout;
     LinearLayout ll_login, ll_signup;
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
+    public ViewPager viewPager;
+    public ViewPagerAdapter viewPagerAdapter;
     public String date;
-
+    public User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
+        UserSharedPref.logOut(getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
         viewPager = findViewById(R.id.viewpager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
@@ -97,7 +108,9 @@ public class IntroActivity extends AppCompatActivity {
         });
 
         UserSharedPref userSharedPref = new UserSharedPref(getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
-        if (userSharedPref.isUserLogged()) {
+        //TODO dynamise from backend
+        boolean b = false;
+        if (b) {
             Intent intent = new Intent(this, DashBoardActivity.class);
             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         }
@@ -117,6 +130,26 @@ public class IntroActivity extends AppCompatActivity {
         //Background animation
         if (animationDrawable != null && animationDrawable.isRunning())
             animationDrawable.stop();
+    }
+
+    @Override
+    public void cancel() {
+
+    }
+
+    @Override
+    public void dismiss() {
+        Log.e("tag", "tagg");
+        //((SignUpFragment)viewPagerAdapter.getItem(SIGNUP_FRAGMENT)).setDate();
+    }
+
+    public void setUpLogin(User currentUser) {
+        this.currentUser = currentUser;
+        Log.e("User in Activity" , this.currentUser.toString());
+
+        UserDAO userDAO = new UserDAO();
+        userDAO.logIn(currentUser, this);
+        changeFragment(LOGIN_FRAGMENT);
     }
 
 
@@ -188,6 +221,26 @@ public class IntroActivity extends AppCompatActivity {
     // Show dialog Fragment
     public void ShowDialogFragment(DialogFragment dialogFragment, String tag) {
         dialogFragment.show(getSupportFragmentManager(), tag);
+    }
+
+    @Override
+    public void onResponse(Call<User> call, Response<User> response) {
+        if (response.body() != null) {
+            UserSharedPref userSharedPref = new UserSharedPref(this.getSharedPreferences(UserSharedPref.USER_FILE, Context.MODE_PRIVATE));
+            userSharedPref.logIn(response.body());
+            Intent intent = new Intent(this, FirstCycleActivity.class);
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        } else {
+            Snackbar.make(background, "Wrong e-mail or Password ", Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onFailure(Call<User> call, Throwable t) {
+        Log.e("Error", t.getMessage());
+        Snackbar.make(background, "Failed to acces remote server.", Snackbar.LENGTH_SHORT).show();
+
+
     }
 
 }

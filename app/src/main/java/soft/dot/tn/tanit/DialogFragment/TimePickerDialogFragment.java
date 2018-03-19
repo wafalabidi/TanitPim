@@ -36,7 +36,6 @@ public class TimePickerDialogFragment extends DialogFragment implements TimePick
     public void onTimeSet(TimePicker timePicker, int i, int i1) {
         int random = ThreadLocalRandom.current().nextInt(1, 60);
         ((IntroActivity) getActivity()).date += " "+i + ":" + i1 + ":" + random;
-        Log.e("Date", ((IntroActivity) getActivity()).date);
         dismiss();
     }
 }

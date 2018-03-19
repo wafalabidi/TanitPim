@@ -4,12 +4,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by sofien on 05/02/2018.
  */
 
 public class User {
+    @Expose
+    @SerializedName("id")
     private int id;
     @Expose
     @SerializedName("username")
@@ -26,14 +29,58 @@ public class User {
 
     @Expose
     @SerializedName("inscriptionDate")
-    private Date inscriptionDate;
+    private String inscriptionDate;
 
+    @Expose
+    @SerializedName("birthDate")
+    private String birthDate;
     @Expose
     @SerializedName("email")
     String email;
     @Expose
     @SerializedName("age")
     String age;
+    @Expose
+    @SerializedName("temperatureData")
+    List<TemperatureData> temperatureData;
+    @Expose
+    @SerializedName("weightData")
+    List<WeightData> weightData ;
+    @Expose
+    @SerializedName("cycleData")
+    List<Cycle> cycleData  ;
+
+    public List<WeightData> getWeightData() {
+        return weightData;
+    }
+
+    public void setWeightData(List<WeightData> weightData) {
+        this.weightData = weightData;
+    }
+
+    public List<Cycle> getCycleData() {
+        return cycleData;
+    }
+
+    public void setCycleData(List<Cycle> cycleData) {
+        this.cycleData = cycleData;
+    }
+
+    public List<TemperatureData> getTemperatureData() {
+        return temperatureData;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setTemperatureData(List<TemperatureData> temperatureData) {
+        this.temperatureData = temperatureData;
+    }
 
     private String imager_url;
 
@@ -57,7 +104,7 @@ public class User {
         this.email = email;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -98,11 +145,11 @@ public class User {
     }
 
 
-    public Date getInscriptionDate() {
+    public String getInscriptionDate() {
         return inscriptionDate;
     }
 
-    public void setInscriptionDate(Date inscriptionDate) {
+    public void setInscriptionDate(String inscriptionDate) {
         this.inscriptionDate = inscriptionDate;
     }
 

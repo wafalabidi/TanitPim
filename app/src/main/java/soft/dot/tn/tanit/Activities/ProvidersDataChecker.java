@@ -39,7 +39,7 @@ import soft.dot.tn.tanit.Services.UserDAO;
  * Created by sofien on 05/02/2018.
  */
 
-public class ProvidersDataChecker extends AppCompatActivity implements View.OnClickListener, Callback<ResponseBody> {
+public class ProvidersDataChecker extends AppCompatActivity implements View.OnClickListener, Callback<String> {
 
     public static final int FACEBOOK_PROVIDER = 1;
     public static final int GOOGLE_PROVIDER = 2;
@@ -147,12 +147,12 @@ public class ProvidersDataChecker extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+    public void onResponse(Call<String> call, Response<String> response) {
         Log.e("Signup Facebook " , "all good ") ;
     }
 
     @Override
-    public void onFailure(Call<ResponseBody> call, Throwable t) {
+    public void onFailure(Call<String> call, Throwable t) {
         Log.e("Signup Facebook " , t.getMessage()) ;
 
     }

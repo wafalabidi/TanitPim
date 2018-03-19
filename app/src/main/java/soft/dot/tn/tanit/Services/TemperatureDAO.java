@@ -38,9 +38,5 @@ public class TemperatureDAO {
         url.trim();
         Call<List<TemperatureData>> call = ItemperatureInstiater().GetTemperatureBetween(url, startDate, endDate);
         call.enqueue(callback);
-
-
     }
-
-
 }

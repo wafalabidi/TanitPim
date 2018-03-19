@@ -134,6 +134,7 @@
             android:textColor="@color/colorAccent" />
 
         <Button
+            android:id="@+id/about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
@@ -148,41 +149,18 @@
             android:textAllCaps="false"
             android:textColor="@color/colorAccent" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/logOut"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:text="@string/log_out"
+            android:background="@drawable/decline_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/facebook" />
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/twitter" />
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/instagram" />
-
-        </LinearLayout>
-
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </ScrollView>
